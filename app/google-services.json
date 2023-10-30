@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "150229000272",
+    "project_id": "chat-c47b3",
+    "storage_bucket": "chat-c47b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150229000272:android:bfd7b103c590e680507155",
+        "android_client_info": {
+          "package_name": "com.bignerdranch.android.chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMMJR8ecvX_JK-wJqY7IlSPLI2CCrjRCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

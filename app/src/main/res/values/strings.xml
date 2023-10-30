@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Chat</string>
+    <string name="entrance_login">Уже есть аккаунт?</string>
+    <string name="entrance_sign_up">Зарегистрироваться</string>
+    <string name="entrance_email">Введите e-mail</string>
+    <string name="entrance_password">Введите пароль</string>
+    <string name="entrance_appname">Клуб любителей 2048</string>
+</resources>
