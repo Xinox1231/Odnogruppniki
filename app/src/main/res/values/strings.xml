@@ -5,4 +5,13 @@
     <string name="entrance_email">Введите e-mail</string>
     <string name="entrance_password">Введите пароль</string>
     <string name="entrance_appname">Клуб любителей 2048</string>
+    <string name="login_text">Войдите в аккаунт</string>
+    <string name="login_email">Введите e-mail</string>
+    <string name="login_text_register">Нет аккаунта?</string>
+    <string name="login_register">Зарегистрироваться</string>
+    <string name="login_password">Введите пароль</string>
+    <string name="login_password_recovery">Забыли пароль?</string>
+    <string name="login_in_account">Войти</string>
+    <string name="main_text">Вы вошли в аккаунт!</string>
+    <string name="main_logout">Выйти</string>
 </resources>

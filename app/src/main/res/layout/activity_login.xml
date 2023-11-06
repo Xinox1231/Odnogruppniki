@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/login_tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:text="@string/login_text"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/login_et_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/login_email"
+        android:inputType="textEmailAddress"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_tv_text" />
+
+    <EditText
+        android:id="@+id/login_et_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/login_password"
+        android:inputType="textPassword"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_et_email" />
+
+    <Button
+        android:id="@+id/login_btn_recovery_password"
+        android:layout_width="259dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="24dp"
+        android:background="#00000000"
+        android:gravity="left"
+        android:text="@string/login_password_recovery"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_et_password" />
+
+    <Button
+        android:id="@+id/login_btn_enter"
+        android:layout_width="259dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="76dp"
+        android:text="@string/login_in_account"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn_recovery_password" />
+
+    <TextView
+        android:id="@+id/login_tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/login_text_register"
+        android:textSize="18sp"
+        android:gravity="left|center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn_enter" />
+
+    <TextView
+        android:id="@+id/login_btn_register"
+        android:layout_width="172dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="left|center"
+        android:onClick="register"
+        android:paddingStart="10dp"
+        android:text="@string/login_register"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/login_tv_register"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn_enter" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
