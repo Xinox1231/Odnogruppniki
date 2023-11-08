@@ -17,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var etPassword : EditText
 
     lateinit var btnLogin : Button
+    lateinit var btnForgotPassword : Button
     lateinit var tvRegister : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         btnLogin = findViewById(R.id.login_btn_enter)
+        btnForgotPassword = findViewById(R.id.login_btn_recovery_password)
         tvRegister = findViewById(R.id.login_btn_register)
         etMail = findViewById(R.id.login_et_email)
         etPassword = findViewById(R.id.login_et_password)
@@ -66,6 +68,11 @@ class LoginActivity : AppCompatActivity() {
                                 startActivity(intent)
                                 finish()
                             }
+                            else{
+                                Toast.makeText(this@LoginActivity,
+                                    task.exception!!.message.toString(),
+                                    Toast.LENGTH_LONG).show()
+                            }
                         }
                 }
             }
@@ -73,6 +80,13 @@ class LoginActivity : AppCompatActivity() {
 
         tvRegister.setOnClickListener {
             val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+
+        btnForgotPassword.setOnClickListener{
+            val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()

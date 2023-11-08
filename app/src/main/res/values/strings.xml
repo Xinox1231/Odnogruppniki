@@ -14,4 +14,7 @@
     <string name="login_in_account">Войти</string>
     <string name="main_text">Вы вошли в аккаунт!</string>
     <string name="main_logout">Выйти</string>
+    <string name="forgot_password_email">Введите e-mail</string>
+    <string name="forgot_password_text">Восстановить пароль</string>
+    <string name="forgot_password_btn">Дальше</string>
 </resources>
