@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ListView
 import android.widget.TextView
 import com.bignerdranch.android.chat.R
+import com.bignerdranch.android.chat.User
 //import com.google.firebase.firestore.auth.User
 
-class ChatAdapter(context: Context, resource: Int, private val dataList: List<User>) : ArrayAdapter<User>(context, resource, dataList) {
+class UserListAdapter(context: Context, resource: Int, private val dataList: List<User>) : ArrayAdapter<User>(context, resource, dataList) {
     private lateinit var context : Context
     private lateinit var chatsData : List<User>
 
@@ -21,7 +21,7 @@ class ChatAdapter(context: Context, resource: Int, private val dataList: List<Us
 
     override fun getView(position : Int, convertView: View?, parent : ViewGroup): View {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        var view : View =  inflater.inflate(R.layout.item, parent, false)
+        var view : View =  inflater.inflate(R.layout.item_chats_bar, parent, false)
         var tvDisplayName : TextView = view.findViewById(R.id.item_display_name)
         tvDisplayName.text = this.chatsData.get(position).displayName
 

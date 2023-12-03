@@ -6,4 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".ChatActivity">
 
+    <EditText
+        android:id="@+id/chat_ed_message_write"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="560dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/chat_ib_sumbit_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toEndOf="@+id/chat_ed_message_write"
+        app:layout_constraintTop_toTopOf="@+id/chat_ed_message_write"
+        app:srcCompat="@android:drawable/checkbox_off_background" />
+
+    <ListView
+        android:id="@+id/chat_lv"
+        android:layout_width="416dp"
+        android:layout_height="521dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

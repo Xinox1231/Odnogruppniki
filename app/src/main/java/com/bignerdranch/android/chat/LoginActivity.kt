@@ -1,15 +1,19 @@
 package com.bignerdranch.android.chat
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -30,7 +34,8 @@ class LoginActivity : AppCompatActivity() {
         etMail = findViewById(R.id.login_et_email)
         etPassword = findViewById(R.id.login_et_password)
 
-        btnLogin.setOnClickListener { 
+        btnLogin.setOnClickListener {
+
             when {
                 TextUtils.isEmpty(etMail.text.toString().trim { it <= ' ' }) -> {
                     Toast.makeText(
@@ -50,6 +55,7 @@ class LoginActivity : AppCompatActivity() {
                     val email: String = etMail.text.toString()
                     val password: String = etPassword.text.toString()
 
+
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
@@ -61,12 +67,12 @@ class LoginActivity : AppCompatActivity() {
                                 ).show()
 
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 intent.putExtra("user_id", firebaseUser.uid)
                                 intent.putExtra("email", email)
                                 startActivity(intent)
                                 finish()
+                                Log.d("Name", firebaseUser.displayName.toString())
                             }
                             else{
                                 Toast.makeText(this@LoginActivity,
