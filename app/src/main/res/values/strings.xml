@@ -5,13 +5,13 @@
     <string name="signup_email">Введите e-mail</string>
     <string name="signup_password">Введите пароль</string>
     <string name="signup_display_name">Введите логин</string>
-    <string name="signup_appname">Клуб любителей 2048</string>
+    <string name="signup_appname">Одногруппники</string>
     <string name="login_text">Войдите в аккаунт</string>
     <string name="login_email">Введите e-mail</string>
     <string name="login_text_register">Нет аккаунта?</string>
     <string name="login_register">Зарегистрироваться</string>
     <string name="login_password">Введите пароль</string>
-    <string name="login_password_recovery">Забыли пароль?</string>
+    <string name="login_password_recovery">Восстановить пароль</string>
     <string name="login_in_account">Войти</string>
     <string name="main_text">Вы вошли в аккаунт!</string>
     <string name="main_logout">Выйти</string>

@@ -45,8 +45,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         }else{
-                            Toast.makeText(
-                                this@ForgotPasswordActivity,
+                            Toast.makeText(this@ForgotPasswordActivity,
                                 task.exception!!.message.toString(), Toast.LENGTH_SHORT
                             ).show()
                         }

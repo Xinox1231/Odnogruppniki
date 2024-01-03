@@ -10,8 +10,9 @@
         android:id="@+id/signup_tv_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="100dp"
         android:text="@string/signup_appname"
+        android:textColor="@color/grey"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="75dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +38,7 @@
             android:gravity="center_horizontal"
             android:hint="@string/signup_email"
             android:inputType="textEmailAddress"
+            android:textColorHint="@color/grey"
             android:textSize="22sp" />
 
         <EditText
@@ -48,6 +50,7 @@
             android:gravity="center_horizontal"
             android:hint="@string/signup_display_name"
             android:inputType="textPersonName"
+            android:textColorHint="@color/grey"
             android:textSize="22sp" />
 
         <EditText
@@ -59,7 +62,9 @@
             android:gravity="center_horizontal"
             android:hint="@string/signup_password"
             android:inputType="textPassword"
+            android:textColorHint="@color/grey"
             android:textSize="22sp" />
+
         <Button
             android:id="@+id/signup_btn_signup"
             android:layout_width="wrap_content"
@@ -67,15 +72,23 @@
             android:layout_marginTop="16dp"
             android:text="@string/signup_sign_up"
             android:textSize="22sp" />
-        <Button
-            android:id="@+id/signup_btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/signup_login"
-            android:textSize="22sp" />
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/signup_tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="208dp"
+        android:layout_marginTop="12dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/signup_login"
+        android:textColor="@color/grey"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

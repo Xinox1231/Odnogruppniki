@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -15,7 +16,7 @@ import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
     lateinit var btnRegister: Button
-    lateinit var btnToLoginActivity: Button
+    lateinit var tvToLoginActivity: TextView
     lateinit var tvEmail: EditText
     lateinit var tvPassword: EditText
     lateinit var tvDisplayName: EditText
@@ -25,7 +26,7 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
 
         btnRegister = findViewById(R.id.signup_btn_signup)
-        btnToLoginActivity = findViewById(R.id.signup_btn_login)
+        tvToLoginActivity = findViewById(R.id.signup_tv_login)
         tvEmail = findViewById(R.id.signup_tv_email)
         tvPassword = findViewById(R.id.signup_tv_password)
         tvDisplayName = findViewById(R.id.signup_tv_displayName)
@@ -122,7 +123,7 @@ class SignUpActivity : AppCompatActivity() {
                     }
                 }
         }
-        btnToLoginActivity.setOnClickListener{
+        tvToLoginActivity.setOnClickListener{
             val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
