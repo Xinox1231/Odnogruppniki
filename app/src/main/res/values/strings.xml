@@ -18,4 +18,11 @@
     <string name="forgot_password_email">Введите e-mail</string>
     <string name="forgot_password_text">Восстановить пароль</string>
     <string name="forgot_password_btn">Дальше</string>
+    <string name="nav_menu_home">Домой</string>
+    <string name="nav_menu_settings">Настройки</string>
+    <string name="nav_menu_logout">Выйти</string>
+    <string name="open_nav">Открыть</string>
+    <string name="close_nav">Закрыть</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

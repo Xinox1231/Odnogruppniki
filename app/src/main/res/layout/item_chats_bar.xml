@@ -8,21 +8,18 @@
     <ImageView
         android:layout_width="100sp"
         android:layout_height="100sp"
-        tools:srcCompat="@tools:sample/avatars"
-        android:src="@drawable/common_google_signin_btn_icon_dark_normal"
-        />
-    
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/common_full_open_on_phone"
+        tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/item_display_name"
-            android:layout_width="310sp"
-            android:layout_height="50sp"
-            android:textSize="24dp"/>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/item_display_name"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/black"
+        android:textSize="24dp" />
 
 </LinearLayout>

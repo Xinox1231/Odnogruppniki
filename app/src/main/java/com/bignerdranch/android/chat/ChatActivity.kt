@@ -3,20 +3,18 @@ package com.bignerdranch.android.chat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ListView
+import androidx.appcompat.widget.Toolbar
 import com.bignerdranch.android.chat.adapters.ChatAdapter
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
+
 
 
 class ChatActivity : AppCompatActivity() {
@@ -24,7 +22,7 @@ class ChatActivity : AppCompatActivity() {
     lateinit var lvChat : ListView
     lateinit var tvMessageText : EditText
     lateinit var btnSubmitMessage : ImageButton
-    private lateinit var adapter: ChatAdapter
+    lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +30,10 @@ class ChatActivity : AppCompatActivity() {
 
         lvChat = findViewById(R.id.chat_lv)
         tvMessageText = findViewById(R.id.chat_ed_message_write)
-        btnSubmitMessage = findViewById(R.id.chat_ib_sumbit_message)
+        btnSubmitMessage = findViewById(R.id.chat_ib_submit_message)
+        toolbar = findViewById(R.id.chat_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val user = FirebaseAuth.getInstance().currentUser // пользователь
         val db = Firebase.firestore
@@ -95,5 +96,10 @@ class ChatActivity : AppCompatActivity() {
                 tvMessageText.text.clear()
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home) finish()
+        return true
     }
 }

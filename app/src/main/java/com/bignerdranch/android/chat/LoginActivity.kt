@@ -54,7 +54,6 @@ class LoginActivity : AppCompatActivity() {
         tvForgotPassword.setOnClickListener{
             val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 
@@ -90,12 +89,12 @@ class LoginActivity : AppCompatActivity() {
                     editor.putString("user_id",firebaseUser.uid)
                     editor.apply()
 
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    val intent = Intent(this@LoginActivity, ChatListActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    intent.putExtra("user_id", firebaseUser.uid)
                     startActivity(intent)
                     finish()
                     Log.d("Name", firebaseUser.displayName.toString())
+                    Log.d("UID",firebaseUser.uid)
                 }
                 else{
                     Toast.makeText(this@LoginActivity,
@@ -105,10 +104,11 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+
     fun checkBox(){
         pref = getSharedPreferences("account_data", MODE_PRIVATE)
         if(pref.contains("user_id")){
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            val intent = Intent(this@LoginActivity, ChatListActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             intent.putExtra("user_id", pref.getString("user_id","user"))
             startActivity(intent)

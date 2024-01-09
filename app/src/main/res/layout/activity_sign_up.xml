@@ -6,35 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
-    <TextView
-        android:id="@+id/signup_tv_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="@string/signup_appname"
-        android:textColor="@color/grey"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="75dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="43dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_tv_text">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/signup_tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/signup_appname"
+            android:textColor="@color/white"
+            android:textSize="26sp" />
 
         <EditText
             android:id="@+id/signup_tv_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="center_horizontal"
             android:hint="@string/signup_email"
             android:inputType="textEmailAddress"
@@ -46,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="center_horizontal"
             android:hint="@string/signup_display_name"
             android:inputType="textPersonName"
@@ -58,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="center_horizontal"
             android:hint="@string/signup_password"
             android:inputType="textPassword"
@@ -67,11 +68,14 @@
 
         <Button
             android:id="@+id/signup_btn_signup"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/signup_sign_up"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>
@@ -80,11 +84,12 @@
         android:id="@+id/signup_tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="208dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="16dp"
         android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
+        android:fontFamily="@font/roboto_medium"
         android:text="@string/signup_login"
         android:textColor="@color/grey"
         android:textSize="18sp"

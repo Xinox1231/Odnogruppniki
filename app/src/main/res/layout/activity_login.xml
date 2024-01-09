@@ -21,17 +21,20 @@
             android:id="@+id/login_tv_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="center"
+            android:padding="5dp"
             android:text="@string/login_text"
-            android:textColor="@color/purple_700"
-            android:textSize="30sp" />
+            android:textColor="@color/white"
+            android:textSize="26sp" />
 
         <EditText
             android:id="@+id/login_et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:hint="@string/login_email"
             android:inputType="textEmailAddress"
@@ -43,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:hint="@string/login_password"
             android:inputType="textPassword"
@@ -55,8 +58,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/login_in_account"
+            android:textColor="@color/white"
             android:textSize="22sp" />
+
 
     </LinearLayout>
 
@@ -78,6 +85,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/login_password_recovery"
             android:textColor="@color/grey"
             android:textSize="18sp" />
@@ -89,6 +97,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:fontFamily="@font/roboto_medium"
             android:paddingStart="10dp"
             android:text="@string/login_register"
             android:textColor="@color/grey"
