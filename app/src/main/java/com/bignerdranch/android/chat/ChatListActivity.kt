@@ -1,5 +1,7 @@
 package com.bignerdranch.android.chat
 
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -7,7 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.bignerdranch.android.chat.fragments.HomeFragment
+import com.bignerdranch.android.chat.fragments.ChatListFragment
 import com.bignerdranch.android.chat.fragments.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 
@@ -34,15 +36,24 @@ class ChatListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
 
         if(savedInstanceState == null){
-            supportFragmentManager.beginTransaction().replace(R.id.chat_list_frame_layout, HomeFragment()).commit()
-            navigationView.setCheckedItem(R.id.nav_menu_home)
+            supportFragmentManager.beginTransaction().replace(R.id.chat_list_frame_layout, ChatListFragment()).commit()
+            navigationView.setCheckedItem(R.id.nav_menu_chat_list)
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.nav_menu_home -> supportFragmentManager.beginTransaction().replace(R.id.chat_list_frame_layout, HomeFragment()).commit()
+            R.id.nav_menu_chat_list -> supportFragmentManager.beginTransaction().replace(R.id.chat_list_frame_layout, ChatListFragment()).commit()
             R.id.nav_menu_settings -> supportFragmentManager.beginTransaction().replace(R.id.chat_list_frame_layout, SettingsFragment()).commit()
+            R.id.nav_menu_logout -> {
+                val pref = getSharedPreferences("account_data", MODE_PRIVATE)
+                val edit = pref.edit()
+                edit.clear()
+                edit.apply()
+                val intent = Intent(this@ChatListActivity, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

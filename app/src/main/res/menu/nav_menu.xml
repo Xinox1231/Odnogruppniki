@@ -6,9 +6,9 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_menu_home"
-            android:icon="@drawable/baseline_home_24"
-            android:title="@string/nav_menu_home"/>
+            android:id="@+id/nav_menu_chat_list"
+            android:icon="@drawable/baseline_message_24"
+            android:title="@string/nav_menu_chat_list"/>
         <item
             android:id="@+id/nav_menu_settings"
             android:icon="@drawable/baseline_settings_suggest_24"

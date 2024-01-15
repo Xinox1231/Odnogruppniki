@@ -53,9 +53,10 @@
             android:layout_width="354dp"
             android:layout_height="match_parent"
             android:layout_marginStart="3dp"
-            android:hint="SDSSDDDDDDDD"
             android:inputType="textPersonName"
             android:textSize="34dp"
+            android:stackFromBottom="true"
+            android:transcriptMode="alwaysScroll"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

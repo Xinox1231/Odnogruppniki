@@ -1,11 +1,17 @@
-package com.bignerdranch.android.chat
+package com.bignerdranch.android.chat.fragments
 
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ListView
-import androidx.appcompat.app.AppCompatActivity
+import com.bignerdranch.android.chat.ChatActivity
+import com.bignerdranch.android.chat.R
+import com.bignerdranch.android.chat.User
 import com.bignerdranch.android.chat.adapters.UserListAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -13,17 +19,21 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class ChaatListActivity : AppCompatActivity() {
+class ChatListFragment : Fragment() {
 
-    /*lateinit var db : FirebaseFirestore
-    lateinit var lvChats : ListView
+    lateinit var db : FirebaseFirestore
+    lateinit var chatList : ListView
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_chat_list, container, false)
+        chatList = view.findViewById(R.id.chat_list)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat_list)
+        return view
+    }
 
-        lvChats = findViewById(R.id.chat_list)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         var currentUser = FirebaseAuth.getInstance().currentUser!!
         db = Firebase.firestore // экземпляр firestore
         var users: ArrayList<User>
@@ -31,11 +41,11 @@ class ChaatListActivity : AppCompatActivity() {
         getUsers(currentUser.uid) { userlist ->
             users = userlist
             // Обновляет адаптер в колбэке
-            val adapter = UserListAdapter(this, android.R.layout.simple_list_item_1, users)
-            lvChats.adapter = adapter
+            val adapter = UserListAdapter(requireContext(), android.R.layout.simple_list_item_1, users)
+            chatList.adapter = adapter
 
-            lvChats.setOnItemClickListener { parent, view, position, id ->
-                val intent = Intent(this@ChatListActivity, ChatActivity::class.java)
+            chatList.setOnItemClickListener { parent, view, position, id ->
+                val intent = Intent(requireContext(), ChatActivity::class.java)
                 val otherUser = users[position]
 
                 findPrivateChat(currentUser.uid, otherUser.uid) { chatId ->
@@ -138,9 +148,4 @@ class ChaatListActivity : AppCompatActivity() {
                 }
             }
     }
-
-
-
-*/
-
 }

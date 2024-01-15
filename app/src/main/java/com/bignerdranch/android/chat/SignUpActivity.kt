@@ -69,6 +69,10 @@ class SignUpActivity : AppCompatActivity() {
                                                 .addOnCompleteListener { updateTask ->
                                                     if (updateTask.isSuccessful) { // Имя пользователя успешно установлено
 
+                                                        val pref = getSharedPreferences("account_data", MODE_PRIVATE)
+                                                        val edit = pref.edit()
+                                                        edit.putString("user_id",firebaseUser.uid)
+                                                        edit.apply()
                                                             // Код, зависящий от актуальной информации о пользователе
                                                         val intent = Intent(this@SignUpActivity, ChatListActivity::class.java)
                                                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
