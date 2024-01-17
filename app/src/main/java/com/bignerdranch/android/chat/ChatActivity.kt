@@ -2,13 +2,15 @@ package com.bignerdranch.android.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.bignerdranch.android.chat.adapters.ChatAdapter
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
@@ -37,14 +39,17 @@ class ChatActivity : AppCompatActivity() {
 
         val user = FirebaseAuth.getInstance().currentUser // пользователь
         val db = Firebase.firestore
-        val chatId = intent.getStringExtra("chatId")
+        val chatId = intent.getStringExtra("CHAT_ID")
+        val secondUserDisplayName = intent.getStringExtra("DISPLAY_NAME")
+
+        supportActionBar?.title = secondUserDisplayName
 
         val userName = user!!.displayName!!
         val messagesList = arrayListOf<Message>() // список сообщений
 
         val messagesCollection = FirebaseFirestore.getInstance().collection("chats").document(chatId!!).collection("messages") // коллекция сообщений
         val listeners: MutableList<ListenerRegistration> = mutableListOf()
-        val adapter : ChatAdapter = ChatAdapter(this, android.R.layout.simple_list_item_1, messagesList)
+        val adapter = ChatAdapter(this, android.R.layout.simple_list_item_1, messagesList)
 
         // Очищаем список перед заполнением новыми данными
         messagesList.clear()
@@ -80,8 +85,6 @@ class ChatActivity : AppCompatActivity() {
 
 // Добавляем созданный слушатель в список слушателей (например, для последующей возможности отписаться от него)
         listeners.add(registration)
-
-
 
         btnSubmitMessage.setOnClickListener{
             if(tvMessageText.text.toString() != ""){

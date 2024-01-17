@@ -8,19 +8,23 @@
     android:gravity="bottom"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-    
+
     <ImageView
+        android:id="@+id/photo_url"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/common_google_signin_btn_icon_dark_focused"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/common_google_signin_btn_icon_dark_focused" />
 
     <TextView
+        android:id="@+id/user_display_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
         android:text="User"
         android:textColor="@color/white"
-        android:textSize="14dp" />
+        android:textSize="16sp" />
 
 
 </LinearLayout>

@@ -1,17 +1,20 @@
 package com.bignerdranch.android.chat
 
 import android.content.Intent
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.bignerdranch.android.chat.fragments.ChatListFragment
 import com.bignerdranch.android.chat.fragments.SettingsFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class ChatListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -21,12 +24,19 @@ class ChatListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_list)
 
+        val currentUser = Firebase.auth.currentUser
         val toolbar: Toolbar = findViewById(R.id.chat_list_toolbar)
         drawerLayout = findViewById(R.id.chat_list_drawer_layout)
         val navigationView : NavigationView = findViewById(R.id.chat_list_nav_view)
         navigationView.setNavigationItemSelectedListener(this)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
+        // Получаем ссылку на NavigationView
+        val chatListNavView: NavigationView = findViewById(R.id.chat_list_nav_view)
+        val headerLayout: View = chatListNavView.getHeaderView(0)
+        val headerTextView: TextView = headerLayout.findViewById(R.id.user_display_name)
+        headerTextView.text = currentUser?.displayName.toString()
+
 
         val toggle : ActionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, GravityCompat.END)

@@ -5,10 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".fragments.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
+        android:id="@+id/fragment_settings_change_display_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/custom_text_view"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/fragment_settings_change_display_name"
+        android:textColor="@color/white"
+        android:textSize="26dp" />
 </FrameLayout>

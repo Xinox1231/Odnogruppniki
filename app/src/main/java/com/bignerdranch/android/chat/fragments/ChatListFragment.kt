@@ -51,14 +51,16 @@ class ChatListFragment : Fragment() {
                 findPrivateChat(currentUser.uid, otherUser.uid) { chatId ->
                     if (chatId != null) {
                         // Документ найден, теперь есть идентификатор чата (chatId)
-                        intent.putExtra("chatId", chatId)
+                        intent.putExtra("CHAT_ID", chatId)
+                        intent.putExtra("DISPLAY_NAME", otherUser.displayName)
                         startActivity(intent)
                     } else {
                         // Проверяем, существует ли чат в обратном направлении
                         findPrivateChat(otherUser.uid, currentUser.uid) { reverseChatId ->
                             if (reverseChatId != null) {
                                 // Используем существующий чат в обратном направлении
-                                intent.putExtra("chatId", reverseChatId)
+                                intent.putExtra("CHAT_ID", reverseChatId)
+                                intent.putExtra("DISPLAY_NAME", otherUser.displayName)
                                 startActivity(intent)
                             } else {
                                 // Ни чата, ни обратного чата нет, создаем новый документ
@@ -66,7 +68,8 @@ class ChatListFragment : Fragment() {
                                 db.collection("chats").add(data)
                                     .addOnSuccessListener { document ->
                                         val newChatId = document.id
-                                        intent.putExtra("chatId", newChatId)
+                                        intent.putExtra("CHAT_ID", newChatId)
+                                        intent.putExtra("DISPLAY_NAME", otherUser.displayName)
                                         startActivity(intent)
                                     }
                                     .addOnFailureListener { exception ->
