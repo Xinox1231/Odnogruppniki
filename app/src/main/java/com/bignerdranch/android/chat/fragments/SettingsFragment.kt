@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.bignerdranch.android.chat.ChatListActivity
+import com.bignerdranch.android.chat.ApplicationActivity
 import com.bignerdranch.android.chat.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -102,7 +101,7 @@ class SettingsFragment : Fragment() {
         dialogChangeDisplayName.show()
     }
     private fun restartApplication() {
-        val intent = Intent(requireContext(), ChatListActivity::class.java)
+        val intent = Intent(requireContext(), ApplicationActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
         requireActivity().finish()

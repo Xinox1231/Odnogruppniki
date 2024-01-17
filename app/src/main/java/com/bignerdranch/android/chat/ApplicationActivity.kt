@@ -16,13 +16,13 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class ChatListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class ApplicationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat_list)
+        setContentView(R.layout.activity_application)
 
         val currentUser = Firebase.auth.currentUser
         val toolbar: Toolbar = findViewById(R.id.chat_list_toolbar)
@@ -60,7 +60,7 @@ class ChatListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 val edit = pref.edit()
                 edit.clear()
                 edit.apply()
-                val intent = Intent(this@ChatListActivity, LoginActivity::class.java)
+                val intent = Intent(this@ApplicationActivity, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             }

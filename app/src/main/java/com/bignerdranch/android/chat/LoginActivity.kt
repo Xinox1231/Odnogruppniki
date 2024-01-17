@@ -89,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
                     editor.putString("user_id",firebaseUser.uid)
                     editor.apply()
 
-                    val intent = Intent(this@LoginActivity, ChatListActivity::class.java)
+                    val intent = Intent(this@LoginActivity, ApplicationActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     finish()
@@ -108,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
     fun checkBox(){
         pref = getSharedPreferences("account_data", MODE_PRIVATE)
         if(pref.contains("user_id")){
-            val intent = Intent(this@LoginActivity, ChatListActivity::class.java)
+            val intent = Intent(this@LoginActivity, ApplicationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             intent.putExtra("user_id", pref.getString("user_id","user"))
             startActivity(intent)

@@ -74,7 +74,7 @@ class SignUpActivity : AppCompatActivity() {
                                                         edit.putString("user_id",firebaseUser.uid)
                                                         edit.apply()
                                                             // Код, зависящий от актуальной информации о пользователе
-                                                        val intent = Intent(this@SignUpActivity, ChatListActivity::class.java)
+                                                        val intent = Intent(this@SignUpActivity, ApplicationActivity::class.java)
                                                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                                         intent.putExtra("user_id", firebaseUser.uid)
                                                         intent.putExtra("display_name", displayName)
