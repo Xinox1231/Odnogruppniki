@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.Toast
 import com.bignerdranch.android.chat.ChatActivity
 import com.bignerdranch.android.chat.R
 import com.bignerdranch.android.chat.User
@@ -34,7 +35,7 @@ class ChatListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var currentUser = FirebaseAuth.getInstance().currentUser!!
+        val currentUser = FirebaseAuth.getInstance().currentUser!!
         db = Firebase.firestore // экземпляр firestore
         var users: ArrayList<User>
 
@@ -52,31 +53,10 @@ class ChatListFragment : Fragment() {
                     if (chatId != null) {
                         // Документ найден, теперь есть идентификатор чата (chatId)
                         intent.putExtra("CHAT_ID", chatId)
-                        intent.putExtra("OTHER_DISPLAY_NAME", otherUser.displayName)
+                        intent.putExtra("SECOND_USER", otherUser)
                         startActivity(intent)
-                    } else {
-                        // Проверяем, существует ли чат в обратном направлении
-                        findPrivateChat(otherUser.uid, currentUser.uid) { reverseChatId ->
-                            if (reverseChatId != null) {
-                                // Используем существующий чат в обратном направлении
-                                intent.putExtra("CHAT_ID", reverseChatId)
-                                intent.putExtra("OTHER_DISPLAY_NAME", otherUser.displayName)
-                                startActivity(intent)
-                            } else {
-                                // Ни чата, ни обратного чата нет, создаем новый документ
-                                val data = hashMapOf("uids" to listOf(currentUser.uid, otherUser.uid))
-                                db.collection("chats").add(data)
-                                    .addOnSuccessListener { document ->
-                                        val newChatId = document.id
-                                        intent.putExtra("CHAT_ID", newChatId)
-                                        intent.putExtra("OTHER_DISPLAY_NAME", otherUser.displayName)
-                                        startActivity(intent)
-                                    }
-                                    .addOnFailureListener { exception ->
-                                        Log.e(ContentValues.TAG, "Error adding document: ", exception)
-                                    }
-                            }
-                        }
+                    } else{
+                        Toast.makeText(requireContext(),"Ошибка на нашей стороне, уже чиним!",Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -108,13 +88,13 @@ class ChatListFragment : Fragment() {
             }
     }
 
-    fun findPrivateChat(currentUser: String, otherUser: String, onComplete: (String?) -> Unit) {
+    fun findPrivateChat(currentUserUID: String, otherUserUID: String, onComplete: (String?) -> Unit) {// Возвращает ссылку на документ с чатом
         val db = FirebaseFirestore.getInstance()
 
         val participantCombinations = listOf(
-            listOf(currentUser, otherUser),
-            listOf(otherUser, currentUser)
-        )
+            listOf(currentUserUID, otherUserUID),
+            listOf(otherUserUID, currentUserUID),
+            )
 
         db.collection("chats")
             .whereIn("participants", participantCombinations)
@@ -129,9 +109,8 @@ class ChatListFragment : Fragment() {
                     } else {
                         // Документ не найден, создаем новый чат
                         val data = hashMapOf(
-                            "participants" to listOf(currentUser, otherUser),
-                            "type" to "individual" // Указываем тип чата
-                        )
+                            "participants" to listOf(currentUserUID, otherUserUID),
+                            "type" to "individual")
 
                         db.collection("chats").add(data)
                             .addOnSuccessListener { documentReference ->

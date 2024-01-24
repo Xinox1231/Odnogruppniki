@@ -1,16 +1,14 @@
 package com.bignerdranch.android.chat
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ListView
-import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.bignerdranch.android.chat.adapters.ChatAdapter
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
@@ -37,14 +35,20 @@ class ChatActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val user = FirebaseAuth.getInstance().currentUser // пользователь
         val db = Firebase.firestore
+        val currentUser = FirebaseAuth.getInstance().currentUser // пользователь
+        val secondUser = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("DATA", User::class.java)
+        } else {
+            intent.getParcelableExtra<User>("DATA")
+        }
+
         val chatId = intent.getStringExtra("CHAT_ID")
-        val secondUserDisplayName = intent.getStringExtra("DISPLAY_NAME")
 
-        supportActionBar?.title = secondUserDisplayName
 
-        val userName = user!!.displayName!!
+        supportActionBar?.title = secondUser!!.displayName
+
+        val userName = currentUser!!.displayName!!
         val messagesList = arrayListOf<Message>() // список сообщений
 
         val messagesCollection = FirebaseFirestore.getInstance().collection("chats").document(chatId!!).collection("messages") // коллекция сообщений
@@ -91,7 +95,7 @@ class ChatActivity : AppCompatActivity() {
                 val timestamp = Timestamp.now()
                 val message = Message(
                     userName, // Имя
-                    user.uid, // UID
+                    currentUser.uid, // UID
                     tvMessageText.text.toString(), // Текст сообщения
                     timestamp) // Время отправления
                 val messagesCollection = db.collection("chats").document(chatId!!).collection("messages")

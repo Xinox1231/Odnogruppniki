@@ -24,26 +24,22 @@ class ApplicationActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_application)
 
-        val currentUser = Firebase.auth.currentUser
         val toolbar: Toolbar = findViewById(R.id.chat_list_toolbar)
-        drawerLayout = findViewById(R.id.chat_list_drawer_layout)
         val navigationView : NavigationView = findViewById(R.id.chat_list_nav_view)
+        val headerLayout: View = navigationView.getHeaderView(0)
+        val headerTextView: TextView = headerLayout.findViewById(R.id.user_display_name)
+        drawerLayout = findViewById(R.id.chat_list_drawer_layout)
+
         navigationView.setNavigationItemSelectedListener(this)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
-        // Получаем ссылку на NavigationView
-        val chatListNavView: NavigationView = findViewById(R.id.chat_list_nav_view)
-        val headerLayout: View = chatListNavView.getHeaderView(0)
-        val headerTextView: TextView = headerLayout.findViewById(R.id.user_display_name)
-        headerTextView.text = currentUser?.displayName.toString()
-
-
-        val toggle : ActionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
+        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, GravityCompat.END)
-
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+        val currentUser = Firebase.auth.currentUser
+        headerTextView.text = currentUser?.displayName.toString()
 
         if(savedInstanceState == null){
             supportFragmentManager.beginTransaction().replace(R.id.chat_list_frame_layout, ChatListFragment()).commit()

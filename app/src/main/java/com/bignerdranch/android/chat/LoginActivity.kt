@@ -88,13 +88,10 @@ class LoginActivity : AppCompatActivity() {
                     val editor = pref.edit()
                     editor.putString("user_id",firebaseUser.uid)
                     editor.apply()
-
                     val intent = Intent(this@LoginActivity, ApplicationActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     finish()
-                    Log.d("Name", firebaseUser.displayName.toString())
-                    Log.d("UID",firebaseUser.uid)
                 }
                 else{
                     Toast.makeText(this@LoginActivity,
@@ -103,8 +100,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
-
-
     fun checkBox(){
         pref = getSharedPreferences("account_data", MODE_PRIVATE)
         if(pref.contains("user_id")){
