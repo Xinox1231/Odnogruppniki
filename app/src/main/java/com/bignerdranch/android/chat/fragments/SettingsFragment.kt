@@ -5,6 +5,10 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +16,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.bignerdranch.android.chat.ApplicationActivity
 import com.bignerdranch.android.chat.R
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -32,6 +36,7 @@ class SettingsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         btnChangeDisplayName = view.findViewById(R.id.fragment_settings_change_display_name)
         dialogChangeDisplayName = Dialog(requireContext())  // Инициализация dialogChangeDisplayName
+
         return view
     }
 
@@ -53,12 +58,8 @@ class SettingsFragment : Fragment() {
         val userId = firebaseUser!!.uid
 
         btnSubmitChangeDisplayName.setOnClickListener{
-            val profileUpdates =
-                UserProfileChangeRequest.Builder()
-                    .setDisplayName(displayName.text.toString())
-                    .build()
-                    firebaseUser!!.updateProfile(profileUpdates)
-                .addOnCompleteListener { updateTask ->
+            val profileUpdates = UserProfileChangeRequest.Builder().setDisplayName(displayName.text.toString()).build()
+            firebaseUser!!.updateProfile(profileUpdates).addOnCompleteListener { updateTask ->
                     if (updateTask.isSuccessful) {
                         val usersCollection = FirebaseFirestore.getInstance().collection("users")
                         val userDocument = usersCollection.document(userId)

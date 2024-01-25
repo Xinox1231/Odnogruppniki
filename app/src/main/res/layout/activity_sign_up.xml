@@ -39,7 +39,7 @@
             android:gravity="center_horizontal"
             android:hint="@string/signup_email"
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/grey"
+            android:textColorHint="@color/grey_dark"
             android:textSize="22sp" />
 
         <EditText
@@ -51,7 +51,7 @@
             android:gravity="center_horizontal"
             android:hint="@string/signup_display_name"
             android:inputType="textPersonName"
-            android:textColorHint="@color/grey"
+            android:textColorHint="@color/grey_dark"
             android:textSize="22sp" />
 
         <EditText
@@ -63,7 +63,7 @@
             android:gravity="center_horizontal"
             android:hint="@string/signup_password"
             android:inputType="textPassword"
-            android:textColorHint="@color/grey"
+            android:textColorHint="@color/grey_dark"
             android:textSize="22sp" />
 
         <Button
@@ -91,7 +91,7 @@
         android:focusable="true"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/signup_login"
-        android:textColor="@color/grey"
+        android:textColor="@color/grey_dark"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

@@ -46,7 +46,9 @@ class ChatActivity : AppCompatActivity() {
         val chatId = intent.getStringExtra("CHAT_ID")
 
 
-        supportActionBar?.title = secondUser!!.displayName
+        if (secondUser != null) {
+            supportActionBar?.title = secondUser.displayName
+        }
 
         val userName = currentUser!!.displayName!!
         val messagesList = arrayListOf<Message>() // список сообщений
