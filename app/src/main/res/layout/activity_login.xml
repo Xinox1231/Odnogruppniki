@@ -79,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TextView
-            android:id="@+id/login_btn_recovery_password"
+            android:id="@+id/login_tv_recovery_password"
             android:layout_width="189dp"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
@@ -91,7 +91,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/login_btn_register"
+            android:id="@+id/login_tv_register"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"

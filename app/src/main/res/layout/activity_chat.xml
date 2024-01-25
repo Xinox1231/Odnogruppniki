@@ -8,7 +8,7 @@
     tools:context=".ChatActivity">
 
     <ListView
-        android:id="@+id/chat_lv"
+        android:id="@+id/chat_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="3dp"

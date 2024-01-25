@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -30,8 +29,8 @@ class LoginActivity : AppCompatActivity() {
         checkBox()
 
         btnLogin = findViewById(R.id.login_btn_enter)
-        tvForgotPassword = findViewById(R.id.login_btn_recovery_password)
-        tvRegister = findViewById(R.id.login_btn_register)
+        tvForgotPassword = findViewById(R.id.login_tv_recovery_password)
+        tvRegister = findViewById(R.id.login_tv_register)
         etMail = findViewById(R.id.login_et_email)
         etPassword = findViewById(R.id.login_et_password)
 

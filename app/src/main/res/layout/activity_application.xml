@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/chat_list_drawer_layout"
+    android:id="@+id/application_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start"
-    tools:context=".ApplicationActivity">
-    
+    tools:context=".ApplicationActivity"
+    tools:openDrawer="start">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="?attr/actionBarSize"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/chat_list_toolbar"
+            android:id="@+id/application_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue"
@@ -27,19 +26,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
-            android:id="@+id/chat_list_frame_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        <ListView
+        android:id="@+id/application_chat_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/chat_list_nav_view"
+        android:id="@+id/application_navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"
-        app:itemIconTint="@color/grey_dark"/>
+        app:itemIconTint="@color/grey_dark"
+        app:menu="@menu/nav_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

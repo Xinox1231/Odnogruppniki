@@ -43,7 +43,7 @@
             android:textSize="22sp" />
 
         <EditText
-            android:id="@+id/signup_tv_displayName"
+            android:id="@+id/signup_tv_display_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

@@ -21,7 +21,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)
 
-        btnNext = findViewById(R.id.forgot_password_btn)
+        btnNext = findViewById(R.id.forgot_password_button_sumbit)
         etEmail = findViewById(R.id.forgot_password_et_email)
         toolbar = findViewById(R.id.forgot_password_toolbar)
         setSupportActionBar(toolbar)

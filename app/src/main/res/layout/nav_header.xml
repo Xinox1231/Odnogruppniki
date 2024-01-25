@@ -10,7 +10,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <ImageView
-        android:id="@+id/photo_url"
+        android:id="@+id/navigation_header_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -18,7 +18,7 @@
         android:src="@drawable/common_google_signin_btn_icon_dark_focused" />
 
     <TextView
-        android:id="@+id/user_display_name"
+        android:id="@+id/navigation_header_display_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"

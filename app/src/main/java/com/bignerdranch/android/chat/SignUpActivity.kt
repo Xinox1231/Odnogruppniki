@@ -30,7 +30,7 @@ class SignUpActivity : AppCompatActivity() {
         tvToLoginActivity = findViewById(R.id.signup_tv_login)
         tvEmail = findViewById(R.id.signup_tv_email)
         tvPassword = findViewById(R.id.signup_tv_password)
-        tvDisplayName = findViewById(R.id.signup_tv_displayName)
+        tvDisplayName = findViewById(R.id.signup_tv_display_name)
 
         btnRegister.setOnClickListener {
             if(isEmptyFieldsInAccountData(tvEmail,tvPassword,tvDisplayName) == false){

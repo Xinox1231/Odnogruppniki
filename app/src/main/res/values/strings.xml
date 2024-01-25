@@ -13,8 +13,6 @@
     <string name="login_password">Введите пароль</string>
     <string name="login_password_recovery">Восстановить пароль</string>
     <string name="login_in_account">Войти</string>
-    <string name="main_text">Вы вошли в аккаунт!</string>
-    <string name="main_logout">Выйти</string>
     <string name="forgot_password_email">Введите e-mail</string>
     <string name="forgot_password_text">Восстановить пароль</string>
     <string name="forgot_password_btn">Дальше</string>
@@ -23,9 +21,10 @@
     <string name="nav_menu_logout">Выйти</string>
     <string name="open_nav">Открыть</string>
     <string name="close_nav">Закрыть</string>
-    <string name="fragment_settings_change_display_name">Изменить ник\nНажмите, чтобы изменить ник</string>
-    <string name="fragment_settings_cardview_account_tv_account">Аккаунт</string>
-    <string name="fragment_settings_account_tv_status">В сети</string>
+    <string name="settings_tv_display_name">User</string>
+    <string name="settings_cardview_tv_account">Аккаунт</string>
+    <string name="settings_tv_status">В сети</string>
+    <string name="settings_btn_change_display_name">Изменить ник\nНажмите, чтобы изменить ник</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

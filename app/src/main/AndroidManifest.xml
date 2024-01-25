@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Chat"
         tools:targetApi="31">
         <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChatActivity"
             android:exported="false" />
         <activity
@@ -32,7 +35,6 @@
         <activity
             android:name=".ApplicationActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

@@ -15,8 +15,6 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-
-
 class ChatActivity : AppCompatActivity() {
 
     lateinit var lvChat : ListView
@@ -28,7 +26,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        lvChat = findViewById(R.id.chat_lv)
+        lvChat = findViewById(R.id.chat_list)
         tvMessageText = findViewById(R.id.chat_ed_message_write)
         btnSubmitMessage = findViewById(R.id.chat_ib_submit_message)
         toolbar = findViewById(R.id.chat_toolbar)
