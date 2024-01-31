@@ -22,9 +22,10 @@
     <string name="open_nav">Открыть</string>
     <string name="close_nav">Закрыть</string>
     <string name="settings_tv_display_name">User</string>
-    <string name="settings_cardview_tv_account">Аккаунт</string>
+    <string name="settings_tv_account">Аккаунт</string>
     <string name="settings_tv_status">В сети</string>
     <string name="settings_btn_change_display_name">Изменить ник\nНажмите, чтобы изменить ник</string>
+    <string name="settings_btn_change_avatar">Установить фото профиля</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

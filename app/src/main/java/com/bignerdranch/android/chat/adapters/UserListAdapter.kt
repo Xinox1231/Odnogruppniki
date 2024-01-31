@@ -1,30 +1,49 @@
 package com.bignerdranch.android.chat.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.chat.R
 import com.bignerdranch.android.chat.User
-//import com.google.firebase.firestore.auth.User
+import com.bignerdranch.android.chat.databinding.ItemChatsBarBinding
 
-class UserListAdapter(context: Context, resource: Int, private val dataList: List<User>) : ArrayAdapter<User>(context, resource, dataList) {
-    private lateinit var context : Context
-    private lateinit var chatsData : List<User>
+class UserListAdapter(val listener: Listener) : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 
-    init {
-        this.context = context
-        this.chatsData = dataList
+    val users = ArrayList<User>()
+    class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+        val binding = ItemChatsBarBinding.bind(item)
+        fun bind(user: User, listener: Listener) = with(binding) {
+            itemDisplayName.text = user.displayName
+            itemView.setOnClickListener{
+                listener.onClick(user)
+            }
+        }
     }
 
-    override fun getView(position : Int, convertView: View?, parent : ViewGroup): View {
-        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        var view : View =  inflater.inflate(R.layout.item_chats_bar, parent, false)
-        var tvDisplayName : TextView = view.findViewById(R.id.item_display_name)
-        tvDisplayName.text = this.chatsData.get(position).displayName
-
-        return view
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_chats_bar, parent, false)
+        return ViewHolder(view)
     }
+
+    override fun getItemCount(): Int {
+        return users.size
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(users.get(position), listener)
+    }
+
+    fun addUser(user: User) {
+        users.add(user)
+    }
+    fun addUsers(users : ArrayList<User>){
+        this.users.addAll(users)
+    }
+
+    interface Listener{
+        fun onClick(user: User)
+    }
+
 }

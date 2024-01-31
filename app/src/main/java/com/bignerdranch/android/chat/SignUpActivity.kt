@@ -14,7 +14,6 @@ import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-
 class SignUpActivity : AppCompatActivity() {
     lateinit var btnRegister: Button
     lateinit var tvToLoginActivity: TextView
@@ -48,7 +47,7 @@ class SignUpActivity : AppCompatActivity() {
                                 val userData = hashMapOf(// Создание макета коллекции для FireStore
                                     "displayName" to displayName,
                                     "email" to email,
-                                    "photoUrl" to "",
+                                    "photoURI" to "",
                                     "uid" to firebaseUser!!.uid
                                 )
 

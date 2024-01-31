@@ -10,5 +10,6 @@
     <color name="grey_light">#7E7E7E</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FFA500</color>
-    <color name="blue">#087AB5</color>
+    <color name="blue_dark">#578bb2</color>
+    <color name="blue_light">#4a8dc5</color>
 </resources>

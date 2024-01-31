@@ -11,14 +11,14 @@
         android:id="@+id/settings_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:background="@color/blue_dark"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:cardBackgroundColor="@color/blue">
+        app:cardBackgroundColor="@color/blue_dark">
 
         <TextView
             android:id="@+id/settings_tv_status"
@@ -51,33 +51,58 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/settings_btn_change_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:drawableStart="@drawable/outline_add_a_photo_24"
+            android:fontFamily="sans-serif"
+            android:paddingStart="30dp"
+            android:paddingEnd="110dp"
+            android:text="@string/settings_btn_change_avatar"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_light"
+            android:textSize="17dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
-        <TextView
-            android:id="@+id/settings_cardview_tv_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/settings_cardview_tv_account"
-            android:textColor="@color/blue"
-            android:textSize="17dp" />
-
-        <Button
-            android:id="@+id/settings_btn_change_display_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="fill"
-            android:lines="2"
-            android:paddingStart="30dp"
-            android:text="@string/settings_btn_change_display_name"
-            android:textAllCaps="false"
-            android:textColor="@color/grey_dark"
-            android:textSize="17dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/settings_tv_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/settings_tv_account"
+                android:textColor="@color/blue_dark"
+                android:textSize="17dp" />
+
+            <Button
+                android:id="@+id/settings_btn_change_display_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="fill"
+                android:lines="2"
+                android:paddingStart="30dp"
+                android:text="@string/settings_btn_change_display_name"
+                android:textAllCaps="false"
+                android:textColor="@color/grey_dark"
+                android:textSize="17dp" />
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ChatActivity">
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -22,7 +22,7 @@
         android:id="@+id/chat_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/blue"
+        android:background="@color/blue_dark"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,9 +50,9 @@
 
         <EditText
             android:id="@+id/chat_ed_message_write"
-            android:layout_width="354dp"
+            android:layout_width="340dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="3dp"
+            android:layout_marginStart="10dp"
             android:inputType="textPersonName"
             android:textSize="34dp"
             android:stackFromBottom="true"

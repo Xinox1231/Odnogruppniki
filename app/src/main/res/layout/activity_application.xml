@@ -18,7 +18,7 @@
             android:id="@+id/application_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue"
+            android:background="@color/blue_dark"
             android:elevation="4dp"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/AppTheme.LightToolbar"
@@ -26,10 +26,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/application_chat_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
     </LinearLayout>
 

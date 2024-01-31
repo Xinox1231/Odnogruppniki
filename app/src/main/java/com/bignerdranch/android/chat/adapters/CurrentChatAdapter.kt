@@ -1,32 +1,37 @@
 package com.bignerdranch.android.chat.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.chat.Message
 import com.bignerdranch.android.chat.R
+import com.bignerdranch.android.chat.databinding.ItemChatMessageBinding
 
-class ChatAdapter(context: Context, resource: Int, private val messageList: List<Message>) : ArrayAdapter<Message>(context, resource, messageList) {
-    private lateinit var context : Context
-    private lateinit var chatsData : List<Message>
-
-    init {
-        this.context = context
-        this.chatsData = messageList
+class CurrentChatAdapter : RecyclerView.Adapter<CurrentChatAdapter.ViewHolder>()  {
+    val messages = ArrayList<Message>()
+    class ViewHolder(item: View) : RecyclerView.ViewHolder(item){
+        val binding = ItemChatMessageBinding.bind(item)
+        fun bind(message : Message) = with(binding){
+            itemChatMessage.text = message.text
+            itemChatMessageDisplayName.text = message.senderName
+        }
     }
 
-    override fun getView(position : Int, convertView: View?, parent : ViewGroup): View {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chat_message,parent,false)
+        return ViewHolder(view)
+    }
 
-        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        var view : View =  inflater.inflate(R.layout.item_chat_message, parent, false)
-        var tvDisplayName : TextView = view.findViewById(R.id.item_chat_message_diplay_name)
-        var tvChatData : TextView = view.findViewById(R.id.item_chat_message_data)
-        tvDisplayName.text = chatsData.get(position).senderName
-        tvChatData.text = chatsData.get(position).text
+    override fun getItemCount(): Int {
+        return messages.size
+    }
 
-        return view
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(messages.get(position))
+    }
+
+    fun addMessage(message: Message){
+        messages.add(message)
     }
 }

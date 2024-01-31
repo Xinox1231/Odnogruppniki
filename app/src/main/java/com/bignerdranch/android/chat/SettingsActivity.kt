@@ -2,42 +2,75 @@ package com.bignerdranch.android.chat
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.ByteArrayOutputStream
 
 class SettingsActivity : AppCompatActivity() {
 
+    lateinit var imageViewAvatar : ImageView
     lateinit var btnChangeDisplayName : Button
+    lateinit var btnChangeAvatar : Button
     lateinit var dialogChangeDisplayName : Dialog
+    lateinit var tvDisplayName : TextView
+    lateinit var toolbar: Toolbar
+
+    lateinit var currentUser : FirebaseUser
+    lateinit var storageRef : StorageReference
+    lateinit var usersAvatarsRef : StorageReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        btnChangeDisplayName = findViewById(R.id.settings_btn_change_display_name)
-        val toolbar : Toolbar = findViewById(R.id.settings_toolbar)
-        val displayName : TextView = findViewById(R.id.settings_tv_display_name)
-        setSupportActionBar(toolbar)
-        supportActionBar!!.title = "Настройки"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        dialogChangeDisplayName = Dialog(this)  // Инициализация dialogChangeDisplayName
+
+        init()
+        setSupActionBar()
+
         btnChangeDisplayName.setOnClickListener{
             showCustomDialog()
         }
+        btnChangeAvatar.setOnClickListener {
+            getImage()
+        }
+    }
 
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        displayName.text = currentUser!!.displayName
+    private fun init(){
+        imageViewAvatar = findViewById(R.id.settings_image_avatar)
+        btnChangeDisplayName = findViewById(R.id.settings_btn_change_display_name)
+        btnChangeAvatar = findViewById(R.id.settings_btn_change_avatar)
+        tvDisplayName = findViewById(R.id.settings_tv_display_name)
+        toolbar = findViewById(R.id.settings_toolbar)
+        storageRef = FirebaseStorage.getInstance().getReference("Images")
+        usersAvatarsRef = storageRef.child("UsersAvatars")
+        currentUser = Firebase.auth.currentUser!!
+        dialogChangeDisplayName = Dialog(this)  // Инициализация dialogChangeDisplayName
+
+        tvDisplayName.text = currentUser!!.displayName
+    }
+
+    private fun setSupActionBar(){
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = "Настройки"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
     private fun showCustomDialog(){
         dialogChangeDisplayName.setContentView(R.layout.custom_dialog_change_nickname)
@@ -102,4 +135,38 @@ class SettingsActivity : AppCompatActivity() {
         startActivity(intent)
         this.finish()
     }
+
+    fun getImage() {
+        val intentChooser = Intent(Intent.ACTION_GET_CONTENT)
+        intentChooser.type = "image/*"
+        startActivityForResult(intentChooser, 1)
+    }
+
+
+    private fun uploadImage(uri: Uri) {
+        val fileReference = usersAvatarsRef.child("${currentUser.uid}.jpg")
+        fileReference.putFile(uri)
+            .addOnSuccessListener { taskSnapshot ->
+                val userDocumentReference = Firebase.firestore.collection("users").document(currentUser.uid)
+                Toast.makeText(this, "Фотография успешно обновлена", Toast.LENGTH_SHORT).show()
+                //userDocumentReference.update("photoURI", uri)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Ошибка, попробуйте ещё раз", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            val selectedImageUri: Uri = data.data!!
+            val profileUpdate = UserProfileChangeRequest.Builder().setPhotoUri(selectedImageUri).build()
+            currentUser.updateProfile(profileUpdate).addOnSuccessListener {
+                uploadImage(selectedImageUri)
+                imageViewAvatar.setImageURI(selectedImageUri)
+            }
+        }
+    }
+
 }
