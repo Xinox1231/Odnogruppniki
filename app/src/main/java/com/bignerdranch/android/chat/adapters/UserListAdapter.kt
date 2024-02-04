@@ -5,19 +5,35 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.chat.R
-import com.bignerdranch.android.chat.User
+import com.bignerdranch.android.chat.data_classes.Chat
 import com.bignerdranch.android.chat.databinding.ItemChatsBarBinding
 
 class UserListAdapter(val listener: Listener) : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 
-    val users = ArrayList<User>()
+    val chats = ArrayList<Chat>()
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding = ItemChatsBarBinding.bind(item)
-        fun bind(user: User, listener: Listener) = with(binding) {
-            itemDisplayName.text = user.displayName
-            itemView.setOnClickListener{
-                listener.onClick(user)
+
+        fun bind(chat: Chat, listener: Listener) = with(binding) {
+            itemDisplayName.text = chat.otherUserDisplayName
+            itemLatestMessage.text = chat.latestMessage
+
+            itemView.setOnClickListener {
+                listener.onClick(chat)
             }
+        }
+    }
+
+
+    fun addChat(chat: Chat){
+        chats.add(chat)
+        notifyItemInserted(itemCount - 1)
+    }
+
+    fun updateLatestMessage(chatPosition: Int, latestMessage: String) {
+        if (chatPosition in 0 until chats.size) {
+            chats[chatPosition].latestMessage = latestMessage
+            notifyItemChanged(chatPosition)
         }
     }
 
@@ -28,22 +44,16 @@ class UserListAdapter(val listener: Listener) : RecyclerView.Adapter<UserListAda
     }
 
     override fun getItemCount(): Int {
-        return users.size
+        return chats.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(users.get(position), listener)
+        holder.bind(chats.get(position), listener)
     }
 
-    fun addUser(user: User) {
-        users.add(user)
-    }
-    fun addUsers(users : ArrayList<User>){
-        this.users.addAll(users)
+    interface Listener {
+        fun onClick(chat: Chat)
     }
 
-    interface Listener{
-        fun onClick(user: User)
-    }
 
 }

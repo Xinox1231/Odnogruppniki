@@ -26,12 +26,22 @@
             android:id="@+id/item_display_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="14dp"
             android:fontFamily="@font/roboto_medium"
             android:text="user name"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/item_latest_message"
+            android:layout_width="300dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="34dp"
+            android:text="message"
+            android:textColor="@color/grey_dark"
+            android:textSize="13dp"/>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

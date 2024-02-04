@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageButton
@@ -11,6 +12,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.chat.adapters.CurrentChatAdapter
+import com.bignerdranch.android.chat.data_classes.Message
+import com.bignerdranch.android.chat.data_classes.User
 import com.bignerdranch.android.chat.databinding.ActivityChatBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -32,24 +35,20 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         bind()
-
-
+        
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val chatId = intent.getStringExtra("CHAT_ID")!!
+        val secondUserDisplayName = intent.getStringExtra("SECOND_USER")
         val db = Firebase.firestore
-        val messagesCollection = db.collection("chats").document(chatId).collection("messages")
+        val currentChatDocument = db.collection("chats").document(chatId)
+        val messagesCollection = currentChatDocument.collection("messages")
         val currentUser = FirebaseAuth.getInstance().currentUser!! // пользователь
         val currentUserDisplayName = currentUser.displayName!!
-        val secondUser = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra("DATA", User::class.java)
-        } else {
-            intent.getParcelableExtra<User>("DATA")
-        }
 
-        if (secondUser != null) {
-            supportActionBar?.title = secondUser.displayName
+        if (secondUserDisplayName != null) {
+            supportActionBar?.title = secondUserDisplayName
         }
 
         val listeners: MutableList<ListenerRegistration> = mutableListOf()
@@ -75,7 +74,6 @@ class ChatActivity : AppCompatActivity() {
                     // Создаем объект сообщения и обрабатываем его
                     val message = Message(senderName, senderId, text, timestamp)
                     adapter.addMessage(message)
-                    adapter.notifyItemInserted(adapter.itemCount - 1)
                 }
             }
         }
@@ -91,10 +89,9 @@ class ChatActivity : AppCompatActivity() {
                     currentUser.uid, // UID
                     tvMessageText.text.toString(), // Текст сообщения
                     timestamp
-                ) // Время отправления
+                )
+                currentChatDocument.update("latestMessage",tvMessageText.text.toString())
                 messagesCollection.add(message)
-                adapter.addMessage(message)
-                adapter.notifyItemInserted(adapter.itemCount - 1)
                 tvMessageText.text.clear()
             }
         }

@@ -1,4 +1,4 @@
-package com.bignerdranch.android.chat
+package com.bignerdranch.android.chat.data_classes
 
 import android.os.Parcel
 import android.os.Parcelable

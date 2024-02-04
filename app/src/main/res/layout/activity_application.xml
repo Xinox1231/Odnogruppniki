@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/application_drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
-    tools:context=".ApplicationActivity"
-    tools:openDrawer="start">
+    app:elevation="0dp"
+    tools:context=".ApplicationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:elevation="0dp"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
@@ -19,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue_dark"
-            android:elevation="4dp"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/AppTheme.LightToolbar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,9 +27,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/application_chat_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+            android:id="@+id/application_chat_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -41,5 +41,6 @@
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/grey_dark"
         app:menu="@menu/nav_menu" />
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

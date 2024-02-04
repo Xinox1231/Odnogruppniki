@@ -20,4 +20,5 @@
         <item name="colorAccent">@color/blue_dark</item>
         <!-- Другие настройки -->
     </style>
+
 </resources>

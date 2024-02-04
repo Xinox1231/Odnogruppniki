@@ -1,4 +1,4 @@
-package com.bignerdranch.android.chat
+package com.bignerdranch.android.chat.data_classes
 
 import com.google.firebase.Timestamp
 
